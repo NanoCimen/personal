@@ -1,0 +1,11 @@
+Use the supplied first and last frames (the same image) as the exact identity and design references for the seated person. Preserve the same silhouette, anatomy, face, clothing, colors, line work, texture, and proportions in every frame. The subject remains the same size and at the same anchored position throughout the shot. Do not add, remove, duplicate, or redesign any body part, accessory, feature, logo, control, or prop.
+
+Preserve the original illustration style exactly. Keep line thickness, flat color regions, and edge sharpness consistent. Do not turn the subject into volumetric CGI, photorealistic, painterly, or glossy imagery.
+
+Locked camera and locked framing. No camera pan, tilt, zoom, orbit, shake, reframing, perspective change, lens change, depth of field, or lighting change. The body, rug, and laptop position remain fixed.
+
+The entire background is one perfectly uniform flat chroma-key green (#00FF00) rectangle in every frame. No gradient, texture, noise, floor plane, horizon, shadow, reflection, glow, particles, color variation, or lighting falloff on the background. Keep the subject fully separated from all image borders with generous padding. No cast shadow. No green object or reflected spill on the subject. No text, subtitle, watermark, border, or UI.
+
+Create one continuous seamless looping idle cycle. The person sits typing calmly on the laptop: a very small, subtle up-and-down breathing motion in the chest and shoulders, occasional small natural finger movements on the keyboard, and one slow gentle blink partway through. Motion stays small and calm, never large or fast. The first frame and the last frame must match exactly so the loop is seamless with no visible seam, jump, or pause at the loop point. No head turn, no camera movement, no scale change, no position drift.
+
+No cuts, morphing, identity drift, scale breathing, position drift, duplicated limbs, missing limbs, extra objects, motion blur, ghosting, frame blending, lighting flicker, shadows on the background, camera movement, text, watermark, border, style change, unnecessary sci-fi circuitry, or plastic AI clutter.

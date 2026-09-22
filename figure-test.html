@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  body{margin:0;background:#fff;background-image:linear-gradient(to right, rgba(0,0,0,.06) 1px, transparent 1px),linear-gradient(to bottom, rgba(0,0,0,.06) 1px, transparent 1px);background-size:24px 24px;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  svg{width:380px;height:auto;}
+</style>
+</head>
+<body>
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- cast shadow -->
+  <ellipse cx="152" cy="264" rx="90" ry="12" fill="#1a1a1a" opacity="0.16" filter="url(#softShadow)"/>
+
+  <!-- rug -->
+  <ellipse cx="150" cy="260" rx="125" ry="17" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+  <ellipse cx="150" cy="256" rx="102" ry="10" fill="none" stroke="#1a1a1a" stroke-width="2" opacity="0.45"/>
+
+  <!-- crossed legs -->
+  <path d="M128,186
+           C 100,194 82,202 80,218
+           C 78,226 88,232 102,230
+           C 114,228 122,224 134,234
+           C 141,239 150,239 150,239
+           C 150,239 159,239 166,234
+           C 178,224 186,228 198,230
+           C 212,232 222,226 220,218
+           C 218,202 200,194 172,186
+           Z"
+        fill="#fff" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M102,208 Q96,218 104,225" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.5"/>
+  <path d="M198,208 Q204,218 196,225" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.5"/>
+  <!-- underside shading on legs -->
+  <path d="M80,218 C78,226 88,232 102,230 C114,228 122,224 128,229 L124,236 C110,234 90,232 82,224 Z" fill="#1a1a1a" opacity="0.06"/>
+  <path d="M220,218 C218,226 208,232 194,230 C182,228 174,224 168,229 L172,236 C186,234 206,232 218,224 Z" fill="#1a1a1a" opacity="0.06"/>
+
+  <!-- laptop base (keyboard) -->
+  <path d="M116,222 L184,222 L194,240 L106,240 Z" fill="#fff" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- torso / t-shirt -->
+  <path d="M124,138
+           Q 108,146 106,178
+           L 106,196
+           Q 106,204 114,204
+           L 186,204
+           Q 194,204 194,196
+           L 194,178
+           Q 192,146 176,138
+           Q 164,152 150,152
+           Q 136,152 124,138 Z"
+        fill="#fff" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M122,140 Q117,156 122,168" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.5"/>
+  <path d="M178,140 Q183,156 178,168" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.5"/>
+  <!-- shirt shading, right side (light from upper left) -->
+  <path d="M176,138 Q192,146 194,178 L194,196 Q194,204 186,204 L166,204 Q172,175 176,138 Z" fill="#1a1a1a" opacity="0.05"/>
+
+  <!-- arms -->
+  <path d="M104,160 Q90,178 96,200 Q102,214 122,222" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M196,160 Q210,178 204,200 Q198,214 178,222" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- laptop screen -->
+  <path d="M124,222 L124,182 Q124,177 129,177 L171,177 Q176,177 176,182 L176,222"
+        fill="#fff" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="133" y1="188" x2="167" y2="188" stroke="#1a1a1a" stroke-width="1.6" opacity="0.35"/>
+  <line x1="133" y1="197" x2="160" y2="197" stroke="#1a1a1a" stroke-width="1.6" opacity="0.35"/>
+  <path d="M176,177 Q176,177 176,182 L176,222 L170,222 L170,183 Z" fill="#1a1a1a" opacity="0.06"/>
+
+  <!-- hands -->
+  <circle cx="122" cy="224" r="4" fill="#1a1a1a"/>
+  <circle cx="178" cy="224" r="4" fill="#1a1a1a"/>
+
+  <!-- neck -->
+  <path d="M141,120 L141,140" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M159,120 L159,140" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- head -->
+  <circle cx="150" cy="82" r="40" fill="#fff" stroke="#1a1a1a" stroke-width="3.5"/>
+  <!-- subtle face shading, right side -->
+  <path d="M150,42 A40,40 0 0 1 150,122 A28,40 0 0 1 150,42 Z" fill="#1a1a1a" opacity="0.04"/>
+
+  <!-- hair swept to the side -->
+  <path d="M111,88
+           Q104,52 132,36
+           Q158,22 186,38
+           Q203,48 199,68
+           Q197,58 190,50
+           Q198,66 194,80
+           Q193,64 184,54
+           Q168,38 146,42
+           Q124,46 116,68
+           Q112,78 111,88 Z"
+        fill="#fff" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- part line + a few swept strands -->
+  <path d="M133,40 Q138,52 132,64" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.55"/>
+  <path d="M152,34 Q160,46 156,58" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.55"/>
+  <path d="M172,40 Q182,50 180,62" fill="none" stroke="#1a1a1a" stroke-width="1.8" opacity="0.55"/>
+
+  <!-- eyes -->
+  <circle cx="131" cy="86" r="3.2" fill="#1a1a1a"/>
+  <circle cx="169" cy="86" r="3.2" fill="#1a1a1a"/>
+
+  <!-- eyebrows (added since glasses no longer frame the eyes) -->
+  <path d="M121,76 Q131,72 141,76" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M159,76 Q169,72 179,76" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- content half-smile -->
+  <path d="M139,106 Q150,112 161,106" fill="none" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
+</body>
+</html>

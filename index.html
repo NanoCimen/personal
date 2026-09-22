@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en" class="is-booting">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alejandro Cimentada — Portfolio</title>
+
+<script>
+  (function(){
+    try {
+      var stored = localStorage.getItem('theme');
+      var isDark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (isDark) document.documentElement.classList.add('dark');
+    } catch (e) {}
+  })();
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        colors: {
+          paper: 'var(--color-paper)',
+          'paper-dark': 'var(--color-paper-dark)',
+          ink: 'var(--color-ink)',
+          gecko: '#6E9946',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --bg:#fff; --ink:#1a1a1a; --t2:#555; --t3:#999; --line:#e8e8e8; --hl:#ffe28a;
+    --ease:cubic-bezier(.19,1,.22,1);
+    --color-paper:#F5F5F0; --color-paper-dark:#EBEBE3; --color-ink:#0F1115;
+  }
+  html.dark{
+    --bg:#16181d; --ink:#F1F1EC; --t2:#a9a9a3; --t3:#75756f; --line:#2b2d33; --hl:#ffe28a;
+    --color-paper:#1c1e24; --color-paper-dark:#25272e; --color-ink:#F1F1EC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth;transition:background-color .3s var(--ease), color .3s var(--ease);}
+  body{
+    background-color: #ffffff;
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      radial-gradient(circle at 100% 0%, rgba(255, 220, 92, 0.17), transparent 38%);
+    background-size: 49px 49px, 49px 49px, 100% 100%;
+    background-attachment: fixed;
+    transition:background-color .3s var(--ease);
+    cursor: url('assets/cursor/select-cursor.png') 0 0, auto;
+  }
+  a, button, .cursor-pointer{cursor:url('assets/cursor/hovering.png') 0 0, pointer !important;}
+  html.dark body{
+    background-color: #16181d;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 100% 0%, rgba(255, 220, 92, 0.1), transparent 38%);
+  }
+  /* background-attachment:fixed is janky/unreliable on mobile Safari, so revert to normal scrolling there */
+  @media (max-width:760px){
+    body{background-attachment:scroll;}
+  }
+  html.dark .gemini-hero-scope svg [stroke="#111111"]{stroke:#F1F1EC;}
+  html.dark .gemini-hero-scope svg [fill="#111111"]{fill:#F1F1EC;}
+  html.dark .gemini-hero-scope svg [stroke="#0F1115"]{stroke:#F1F1EC;}
+  html.dark .gemini-hero-scope svg [fill="#0F1115"]{fill:#F1F1EC;}
+  html.is-booting, html.is-booting body{overflow:hidden;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- boot loader ---------- */
+  .site-loader{
+    position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+    background:var(--bg);
+    background-image:linear-gradient(#00000006 1px,transparent 0),linear-gradient(90deg,#00000006 1px,transparent 0);
+    background-size:32px 32px;
+    transition:transform .6s var(--ease), opacity .4s ease;
+  }
+  .site-loader.is-exiting{opacity:.96;transform:translateY(-100%);pointer-events:none;}
+  .site-loader-inner{display:flex;flex-direction:column;align-items:center;gap:20px;}
+  .site-loader-mark{
+    width:56px;height:56px;border-radius:50%;background:var(--hl);
+    animation:loader-greet 1.5s var(--ease) infinite;
+  }
+  .site-loader-track{width:120px;height:3px;background:#ececec;position:relative;overflow:hidden;}
+  .site-loader-track i{position:absolute;inset:0;background:var(--ink);transform-origin:0;animation:loader-progress 1.2s var(--ease) infinite;}
+  @keyframes loader-greet{0%,100%{transform:translateY(0) rotate(-2deg);}52%{transform:translateY(-6px) rotate(2deg);}}
+  @keyframes loader-progress{0%{transform:translateX(-100%) scaleX(.35);}52%{transform:translateX(4%) scaleX(.72);}100%{transform:translateX(100%) scaleX(.35);}}
+
+  /* ---------- scroll progress ---------- */
+  .progress-wrap{position:fixed;top:50%;left:24px;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .progress{width:2px;height:120px;background:var(--line);border-radius:2px;}
+  .progress i{display:block;width:100%;background:var(--ink);border-radius:2px;height:0%;transition:height .1s linear;}
+  .progress-num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--t3);letter-spacing:.02em;}
+  @media (max-width:760px){.progress-wrap{display:none;}}
+
+  /* ---------- scroll indicator arrow bounce ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-arrow-bounce{animation:scrollBounce 1.8s ease-in-out infinite;}
+  }
+  @keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+  /* ---------- layout ---------- */
+  .col{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- generic section ---------- */
+  section{padding:96px 0;}
+  section .kicker{font-size:13px;letter-spacing:.18em;color:var(--t3);text-transform:uppercase;margin-bottom:12px;}
+  section h2{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.02em;margin-bottom:48px;}
+
+  /* scroll reveal */
+  .rev{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease), transform 1s var(--ease);}
+  .rev.on{opacity:1;transform:translateY(0);}
+  .rev.d1{transition-delay:.05s;}
+  .rev.d2{transition-delay:.15s;}
+  .rev.d3{transition-delay:.25s;}
+  .rev.d4{transition-delay:.35s;}
+  .rev.d5{transition-delay:.45s;}
+
+
+  /* ---------- tab nav ---------- */
+  .tab-nav{
+    display:flex;align-items:center;flex-wrap:wrap;
+    padding-bottom:16px;margin-bottom:48px;
+    border-bottom:1px solid var(--line);
+  }
+  .tab-link{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:600;
+    color:var(--t3);
+    background:none;border:none;border-right:1px solid var(--line);
+    padding:0 24px 14px;margin:0;cursor:pointer;
+    position:relative;
+    transition:color .3s var(--ease);
+  }
+  .tab-link:first-child{padding-left:0;}
+  .tab-link:last-child{padding-right:0;border-right:none;}
+  .tab-link::after{
+    content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;
+    background:var(--ink);
+    transform:scaleX(0);transform-origin:left;opacity:0;
+    transition:transform .3s var(--ease), opacity .3s var(--ease);
+  }
+  .tab-link.active{color:var(--ink);}
+  .tab-link.active::after{transform:scaleX(1);opacity:1;}
+  @media (prefers-reduced-motion: reduce){
+    .tab-link, .tab-link::after{transition:none;}
+  }
+
+  /* ---------- tab panels ---------- */
+  .tab-panels{position:relative;}
+  .tab-panel{
+    transform: perspective(1000px) rotateX(10deg) translateY(24px);
+    opacity:0;
+    transition: transform .35s var(--ease), opacity .35s var(--ease);
+  }
+  .tab-panel[hidden]{display:none;}
+  .tab-panel.active{
+    transform: perspective(1000px) rotateX(0deg) translateY(0px);
+    opacity:1;
+  }
+  .tab-panel.fading-out{position:absolute;top:0;left:0;right:0;}
+  @media (prefers-reduced-motion: reduce){
+    .tab-panel{transition:none;}
+  }
+
+  /* ---------- project cards ---------- */
+  .project-card{transition: transform .25s var(--ease), box-shadow .25s var(--ease);}
+  .project-card:hover{transform:translateY(-2px);box-shadow:6px 6px 0 0 #111111;}
+  .pinfo-main{display:block;text-decoration:none;color:inherit;}
+
+  /* ---------- skills grid ---------- */
+  .skill-card{transition: transform .25s var(--ease), box-shadow .25s var(--ease);}
+  .skill-card:hover{transform:translateY(-2px);box-shadow:6px 6px 0 0 #111111;}
+
+  /* ---------- floating socials ticker (hero) ---------- */
+  .social-ticker-mask{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
+  .social-ticker-track{display:flex;width:max-content;gap:22px;animation:social-ticker-scroll 9s linear infinite;}
+  .group:hover .social-ticker-track{animation-play-state:paused;}
+  .social-ticker-item{display:flex;align-items:center;gap:6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  @keyframes social-ticker-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* ---------- articles ---------- */
+  .article-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;transition: transform .25s var(--ease), box-shadow .25s var(--ease);}
+  .article-card:hover{transform:translateY(-2px);box-shadow:6px 6px 0 0 #111111;}
+
+  /* ---------- about ---------- */
+  .about{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;}
+  .about .avatar-frame{width:160px;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:5px solid #000;flex:none;}
+  .about .avatar{width:160px;height:180px;object-fit:cover;object-position:50% 25%;}
+  .about .bio{flex:1;min-width:160px;color:var(--t2);line-height:1.7;}
+  .about .bio strong{color:var(--ink);}
+
+  /* ---------- contact ---------- */
+  .contact-list{display:flex;flex-direction:column;}
+  .contact-row{
+    position:relative;overflow:hidden;isolation:isolate;
+    display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:20px;
+    padding:24px 16px;margin:0 -16px;text-decoration:none;color:inherit;
+  }
+  .contact-row + .contact-row{border-top:1px solid var(--line);}
+  .contact-row::before{
+    content:'';position:absolute;inset:0;z-index:-1;
+    background:#1a1a1a;
+    transform:scaleX(0);transform-origin:left;
+    transition:transform .55s var(--ease);
+  }
+  .contact-row:hover::before{transform:scaleX(1);}
+  .contact-row .num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--t3);font-size:14px;transition:color .4s var(--ease), transform .5s var(--ease);}
+  .contact-row .platform{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:600;transition:color .4s var(--ease), transform .5s var(--ease);}
+  .contact-row .platform svg{width:18px;height:18px;flex:none;}
+  .contact-row .handle{color:var(--t2);font-size:14px;margin-top:4px;transition:color .4s var(--ease), transform .5s var(--ease);}
+  .contact-row .arrow{display:inline-block;color:var(--t3);transition:transform .5s var(--ease), color .4s var(--ease);}
+  .contact-row:hover .num{color:var(--hl);transform:translateX(4px);}
+  .contact-row:hover .platform{color:#fff;transform:translateX(4px);}
+  .contact-row:hover .handle{color:#ccc;transform:translateX(4px);}
+  .contact-row:hover .arrow{color:#fff;transform:translate(6px,-3px) rotate(-45deg) scale(1.15);}
+  .contact-row--github::before{background:#1c2d4a;}
+  .contact-row--instagram::before{background:#e1306c;}
+  .contact-row--email::before{background:#000;}
+  .contact-row--linkedin::before{background:#5b9bd5;}
+  @media (max-width:640px){.contact-row{grid-template-columns:40px 1fr auto;}}
+
+  /* ---------- section divider ---------- */
+  .section-divider{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:48px auto;
+  }
+  #explore{padding-bottom:0;}
+  #contact{padding-top:0;}
+
+  footer{padding:32px 0;color:var(--t3);font-size:13px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+
+  /* ======================================================
+     Gemini hero section — exact port, scoped to this wrapper
+     so it doesn't bleed into the rest of the page's theme.
+     ====================================================== */
+  .gemini-hero-scope{
+    color:var(--color-ink);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    position:relative;
+  }
+
+  /* ---------- hero scroll roll effect ---------- */
+  #heroStage{
+    transform: perspective(1000px) rotateX(var(--roll-angle, 0deg)) translateY(var(--roll-y, 0px));
+    transform-origin: center var(--roll-origin-y, 50%);
+  }
+
+  .gemini-hero-scope .bg-grid-paper-dense{
+    background-image:
+      linear-gradient(to right, rgba(15, 17, 21, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 17, 21, 0.08) 1px, transparent 1px);
+    background-size:8px 8px;
+  }
+  html.dark .gemini-hero-scope .bg-grid-paper-dense{
+    background-image:
+      linear-gradient(to right, rgba(241, 241, 236, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(241, 241, 236, 0.1) 1px, transparent 1px);
+  }
+
+  .gemini-hero-scope .animated-vector-dash{stroke-dasharray:6, 6;}
+
+  .gemini-hero-scope .halftone-bg{
+    background-image:radial-gradient(#0f1115 20%, transparent 20%);
+    background-position:0 0;
+    background-size:6px 6px;
+    opacity:0.15;
+  }
+  html.dark .gemini-hero-scope .halftone-bg{
+    background-image:radial-gradient(#F1F1EC 20%, transparent 20%);
+  }
+
+  .gemini-hero-scope .dial-spinner{transform-origin:center;transition:transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);}
+
+  /* ---------- character blink (eyelid overlays) ---------- */
+  .eyelid{
+    position:absolute;
+    border-radius:50%;
+    opacity:0;
+    transform:translate(-50%,-50%) scaleY(0);
+    pointer-events:none;
+  }
+  .eyelid-boy{ background:#fdfdfd; animation:eyeBlink 3s ease-in-out infinite; }
+  .eyelid-lizard{
+    background:radial-gradient(circle at 35% 30%, #d7ee7a, #bee439 55%, #a9d033 100%);
+    filter:blur(0.5px);
+    animation:eyeBlink 3s ease-in-out infinite;
+    animation-delay:1s;
+  }
+
+  @keyframes eyeBlink{
+    0%, 92%, 100%{ opacity:0; transform:translate(-50%,-50%) scaleY(0); }
+    94%{ opacity:1; transform:translate(-50%,-50%) scaleY(1); }
+    96%{ opacity:0; transform:translate(-50%,-50%) scaleY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .eyelid-boy, .eyelid-lizard{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="site-loader" id="loader">
+    <div class="site-loader-inner">
+      <div class="site-loader-mark"></div>
+      <div class="site-loader-track"><i></i></div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress"><i id="progressFill"></i></div>
+    <span class="progress-num" id="progressNum">0</span>
+  </div>
+
+  <div class="gemini-hero-scope bg-grid-paper">
+
+    <!-- Header Nav -->
+    <header class="px-6 py-4 transition-all duration-300" id="navbar">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" aria-label="Toggle dark theme" class="flex items-center justify-center w-8 h-8 rounded-full border border-ink/20 hover:border-ink/60 transition-colors">
+            <i data-lucide="sun" class="w-4 h-4 dark:hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          </button>
+          <a href="index-es.html" aria-label="Cambiar a español" class="flex items-center justify-center w-8 h-8 rounded-full border border-ink/20 hover:border-ink/60 transition-colors text-xs font-mono font-semibold tracking-tight">ES</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a href="https://www.linkedin.com/in/alejandrocimentada" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-sm font-medium tracking-tight hover:opacity-70 transition-opacity">
+            <img src="assets/social/linkedin.jpg" alt="LinkedIn" class="w-5 h-5 rounded" />
+            /alejandrocimentada
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button id="menuBtn" class="md:hidden p-1 rounded hover:bg-ink/5">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="fixed inset-0 bg-paper z-50 flex flex-col justify-center items-center gap-6 text-xl font-bold translate-x-full transition-transform duration-300 md:hidden">
+      <button id="closeMenuBtn" class="absolute top-6 right-6 p-2">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+      <button onclick="switchTab('projects'); scrollToSection('explore'); toggleMobileMenu()" class="hover:italic">Projects</button>
+      <button onclick="switchTab('skills'); scrollToSection('explore'); toggleMobileMenu()" class="hover:italic">Skills</button>
+      <button onclick="switchTab('articles'); scrollToSection('explore'); toggleMobileMenu()" class="hover:italic">Articles</button>
+      <button onclick="switchTab('about'); scrollToSection('explore'); toggleMobileMenu()" class="hover:italic">About</button>
+      <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="hover:italic">Contact</button>
+    </div>
+
+    <div id="top" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 pt-28 pb-12 flex flex-col justify-center relative" style="min-height:100vh;">
+
+      <!-- MAIN HERO STAGE -->
+      <div id="heroStage" class="relative z-20 my-auto py-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center" style="--roll-origin-y:50%; --roll-angle:0deg; --roll-y:0px;">
+
+        <!-- Corner marker (right) -> character connector arrows, spans the full row -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none overflow-visible" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 683 190 Q 691 193 712 218" fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#dialArrow)" />
+          <path d="M 725 228 Q 733 231 754 256" fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#dialArrow)" />
+          <path d="M 720 220 C 740 130, 500 100, 480 160 " fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#dialArrow)" />
+        </svg>
+
+        <!-- ========================================== -->
+        <!-- LEFT COLUMN: Rotary Dial & Typography      -->
+        <!-- ========================================== -->
+        <div class="lg:col-span-6 flex flex-col justify-center relative">
+
+          <div class="flex items-center gap-6 sm:gap-8">
+
+            <!-- Interactive Rotary Dial Component -->
+            <div class="relative group cursor-pointer select-none shrink-0" id="interactiveDial">
+              <div class="w-28 h-28 sm:w-28 sm:h-28 rounded-full border-2 border-ink flex items-center justify-center relative bg-paper shadow-sm group-hover:shadow-md transition-shadow">
+                <!-- Outer Ring Halftone Accent -->
+                <div class="absolute inset-1 rounded-full halftone-bg opacity-20"></div>
+
+                <!-- Rotating Indicator Ring -->
+                <svg class="absolute inset-0 w-full h-full dial-spinner" viewBox="0 0 100 100" id="dialSvg">
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="#0F1115" stroke-width="1" stroke-dasharray="3, 3" />
+                  <circle cx="50" cy="8" r="4" fill="#0F1115" />
+                </svg>
+
+                <!-- Inner Dial Content -->
+                <div class="text-center z-10 px-1">
+                  <span class="block text-[10px] font-mono font-semibold uppercase tracking-wider text-ink/60">Mode</span>
+                  <span class="font-bold text-xs sm:text-sm tracking-tight text-ink uppercase" id="dialModeText">Interactive</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bounding Box Editorial Typography -->
+            <div class="flex-1 relative">
+              <!-- Decorative corner guide-lines (visual only, no box/background) -->
+              <div class="absolute z-10 -left-0.5 -top-0.5 w-1.5 h-1.5 bg-white border border-ink"></div>
+              <div class="absolute z-10 w-1.5 h-1.5 bg-white border border-ink" style="left:calc(102.5% - 2px); top:-2px;"></div>
+              <span class="absolute font-mono text-[10px] text-ink" style="left:-4px; top:-20px;">10, 0</span>
+              <svg class="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="dialArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#111111" />
+                  </marker>
+                </defs>
+                <path d="M 0 0 L 410 0" fill="none" stroke="#0F1115" stroke-width="1" opacity="0.9" vector-effect="non-scaling-stroke" />
+                <path d="M 0 0 L 0 200" fill="none" stroke="#0F1115" stroke-width="1" opacity="0.9" />
+
+                <!-- Dial -> corner marker connector -->
+                <path d="M -10 0 Q -50 -15 -60 35" fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#dialArrow)" />
+
+                <!-- Dial -> tag connector -->
+                <path d="M -80 170 Q -100 250 25 248" fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#dialArrow)" />
+              </svg>
+
+              <h1 class="text-5xl sm:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[0.95] text-ink select-none pl-4">
+                <span class="block overflow-hidden"><span class="block">Alejandro</span></span><span class="block overflow-hidden"><span class="block">Cimentada</span></span>
+              </h1>
+            </div>
+          </div>
+
+          <!-- Domain Pill Badge -->
+          <div class="relative mt-8 self-start ml-[152px] sm:ml-[192px] bg-paper border border-ink/60 px-2.5 py-1 rounded-md text-xs font-mono font-medium tracking-tight text-ink shadow-sm whitespace-nowrap">
+            AI Integration / Enterprise Systems / Applied AI
+          </div>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- RIGHT COLUMN: Floating Interactive Motion  -->
+        <!-- ========================================== -->
+        <div class="lg:col-span-6 relative flex items-center justify-end pl-6 sm:pl-12 pr-0 min-h-[460px] sm:min-h-[560px]">
+
+          <!-- Hero character illustration, filling the open central space -->
+          <div class="absolute" style="left:-60px;top:45%;transform:translateY(-50%);width:640px;max-width:85%;z-index:10;">
+            <img src="assets/hero-character/sittingport.png" alt="" class="pointer-events-none select-none block w-full h-auto" />
+            <div class="eyelid eyelid-boy" style="left:44.79%;top:33.24%;width:7.42%;height:9.26%;"></div>
+            <div class="eyelid eyelid-boy" style="left:56.06%;top:36.54%;width:6.56%;height:8.20%;"></div>
+          </div>
+
+          <!-- Lagarto mascot, sitting beside the character -->
+          <div class="absolute" style="left:20px;bottom:120px;width:150px;z-index:11;">
+            <img src="assets/lagarto/base.png" alt="" class="pointer-events-none select-none block w-full h-auto" />
+            <div class="eyelid eyelid-lizard" style="left:74.19%;top:25.88%;width:8.86%;height:13.28%;"></div>
+          </div>
+
+          <!-- Container with ample blank central whitespace shifted right -->
+          <div class="relative w-full h-full max-w-xs sm:max-w-sm ml-auto flex flex-col justify-between items-end gap-10 z-30">
+
+            <!-- FLOATING CODE WINDOW (Top Right, Compact) -->
+            <div class="w-50 sm:w-52 self-end bg-paper border border-ink rounded-md p-2.5 shadow-[3px_3px_0px_0px_rgba(15,17,21,1)] relative group cursor-pointer -translate-y-[20px]">
+              <!-- Halftone Accent Background Layer -->
+              <div class="absolute inset-0 halftone-bg rounded-md opacity-10 pointer-events-none"></div>
+
+              <!-- Title Bar -->
+              <div class="flex items-center justify-between border-b border-ink pb-2 mb-2.5 relative z-10">
+                <div class="flex gap-1">
+                  <span class="w-2.5 h-2.5 rounded-full bg-ink"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-ink"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-ink"></span>
+                </div>
+                <span class="font-mono text-[10px] font-bold text-ink/70">code & { ... }</span>
+              </div>
+
+              <!-- Code Content Block -->
+              <div class="space-y-2 font-mono text-xs relative z-10">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-ink/40">01</span>
+                  <span class="font-bold text-ink">code <span class="text-ink/60">{</span></span>
+                </div>
+                <div class="flex items-center gap-1.5 pl-3">
+                  <span class="text-ink/40">02</span>
+                  <div class="w-24 h-1 bg-ink/30 rounded"></div>
+                </div>
+                <div class="flex items-center gap-1.5 pl-3">
+                  <span class="text-ink/40">03</span>
+                  <div class="w-16 h-1 bg-ink rounded"></div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-ink/40">04</span>
+                  <span class="font-bold text-ink"><span class="text-ink/60">}</span> <span class="text-[10px] text-ink/50">&lt;///1&gt;</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- FLOATING SOCIALS TICKER WINDOW (Between Code & Wireframe) -->
+            <div class="w-52 sm:w-56 absolute right-0 top-1/2 -translate-y-1/2 bg-paper border border-ink rounded-md p-2.5 shadow-[3px_3px_0px_0px_rgba(15,17,21,1)] group cursor-pointer -translate-y-[25px] translate-x-[30px]">
+              <!-- Title Bar -->
+              <div class="flex items-center justify-between border-b border-ink pb-2 mb-2.5">
+                <div class="flex gap-1">
+                  <span class="w-2.5 h-2.5 rounded-full bg-ink"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-ink"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-ink"></span>
+                </div>
+                <span class="font-mono text-[10px] font-bold tracking-wider text-ink/70">connect()</span>
+              </div>
+
+              <!-- Animated Social Ticker -->
+              <div class="social-ticker-mask">
+                <div class="social-ticker-track">
+                  <span class="social-ticker-item"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>github/alejandrocimentada</span>
+                  <span class="social-ticker-item"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>ig/alejandrocimentada</span>
+                  <span class="social-ticker-item"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/></svg>/alejandrocimentada</span>
+                  <span class="social-ticker-item"><i data-lucide="mail" class="w-3.5 h-3.5"></i>alejandrocimentadasone@gmail.com</span>
+                  <span class="social-ticker-item" aria-hidden="true"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>github/alejandrocimentada</span>
+                  <span class="social-ticker-item" aria-hidden="true"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>ig/alejandrocimentada</span>
+                  <span class="social-ticker-item" aria-hidden="true"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/></svg>/alejandrocimentada</span>
+                  <span class="social-ticker-item" aria-hidden="true"><i data-lucide="mail" class="w-3.5 h-3.5"></i>alejandrocimentadasone@gmail.com</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- FLOATING WIREFRAME UI WINDOW (Bottom Right, Compact) -->
+            <div class="w-56 sm:w-60 self-end bg-paper border border-ink rounded-md p-3 shadow-[4px_4px_0px_0px_rgba(15,17,21,1)] relative group cursor-pointer translate-y-[40px] translate-x-[20px]">
+              <!-- Title Bar -->
+              <div class="flex items-center justify-between border-b border-ink pb-2 mb-2.5">
+                <div class="flex gap-1">
+                  <span class="w-2.5 h-2.5 rounded-full bg-ink"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-ink"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-ink"></span>
+                </div>
+                <span class="font-mono text-[10px] font-bold tracking-wider text-ink/70">wireframe_spec</span>
+              </div>
+
+              <!-- Wireframe Layout Box -->
+              <div class="grid grid-cols-12 gap-2.5 items-center">
+                <!-- Schematic Layout Placeholder with "X" Cross -->
+                <div class="col-span-7 border border-ink rounded p-2 h-20 bg-grid-paper-dense flex flex-col justify-between relative overflow-hidden">
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+                    <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <line x1="0" y1="0" x2="100" y2="100" stroke="#0F1115" stroke-width="1.5" />
+                      <line x1="100" y1="0" x2="0" y2="100" stroke="#0F1115" stroke-width="1.5" />
+                    </svg>
+                  </div>
+                  <div class="w-full h-0.5 bg-ink rounded relative z-10"></div>
+                  <div class="w-3/4 h-0.5 bg-ink/40 rounded relative z-10"></div>
+                  <div class="w-1/2 h-0.5 bg-ink/20 rounded relative z-10"></div>
+                </div>
+
+                <!-- Side Control Sliders & Indicator Scales -->
+                <div class="col-span-5 flex flex-col justify-between h-20 font-mono text-[9px]">
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-ink/60">
+                      <span>GRID</span>
+                      <span>100%</span>
+                    </div>
+                    <div class="w-full bg-paper border border-ink h-2 rounded-full overflow-hidden p-0.5">
+                      <div class="bg-ink h-full rounded-full w-3/4"></div>
+                    </div>
+                  </div>
+
+                  <div class="border border-dashed border-ink/40 p-1.5 rounded text-center">
+                    <span class="text-[8px] font-bold text-ink/80 tracking-widest uppercase">00000000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="w-full flex flex-col items-center justify-center my-8 relative select-none">
+        <div class="relative flex items-center justify-center w-full max-w-lg py-6">
+          <div class="absolute left-0 right-0 h-px bg-ink/20"></div>
+          <div class="absolute top-0 bottom-0 w-px bg-ink/20"></div>
+
+          <div onclick="switchTab('projects'); scrollToSection('explore')" class="relative z-10 font-mono text-sm font-semibold tracking-wider flex items-center gap-2 group cursor-pointer" style="transform:translateY(-50px);">
+
+            <!-- Decorative curved dotted arrow (placeholder position/curve, to be fine-tuned) -->
+            <svg class="absolute pointer-events-none overflow-visible" style="left:-32px; top:50%; width:20px; height:20px; transform:translateY(-50%);" xmlns="http://www.w3.org/2000/svg">
+            </svg>
+
+            <span class="scroll-arrow-bounce inline-flex">
+              <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-3 transition-transform"></i>
+            </span>
+            SCROLL TO EXPLORE
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <main>
+    <section id="explore">
+      <div class="col">
+
+        <!-- Tab nav -->
+        <div class="tab-nav" role="tablist">
+          <button type="button" class="tab-link active" data-tab="projects" role="tab" aria-selected="true" aria-controls="panel-projects">Projects</button>
+          <button type="button" class="tab-link" data-tab="skills" role="tab" aria-selected="false" aria-controls="panel-skills">Skills</button>
+          <button type="button" class="tab-link" data-tab="articles" role="tab" aria-selected="false" aria-controls="panel-articles">Articles</button>
+          <button type="button" class="tab-link" data-tab="about" role="tab" aria-selected="false" aria-controls="panel-about">About</button>
+        </div>
+
+        <!-- Tab panels -->
+        <div class="tab-panels">
+          <div class="tab-panel active" id="panel-projects" role="tabpanel">
+            <div class="kicker">Selected work</div>
+            <h2>Projects</h2>
+            <div class="flex flex-col gap-6">
+
+              <div class="project-card relative flex flex-col sm:flex-row items-stretch gap-5 bg-paper border border-ink rounded-md p-5 pb-8 sm:pb-5 shadow-[4px_4px_0px_0px_#111111]">
+                <span class="pnum font-mono text-xs text-ink/40 absolute left-5 bottom-3" aria-hidden="true">01</span>
+                <div class="stage border border-dashed border-ink/30 bg-ink/[0.02] rounded flex items-center justify-center shrink-0 w-full sm:w-48 h-40">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Screenshot</span>
+                </div>
+                <div class="pinfo flex-1 flex flex-col justify-center">
+                  <a class="pinfo-main group" href="#" target="_blank" rel="noopener">
+                    <div class="ptitle flex items-center gap-2 mb-2">
+                      <span class="pbrand inline-flex items-center justify-center w-5 h-5 rounded border border-ink/30 bg-ink/5 shrink-0 font-mono text-[10px] font-bold text-ink/60">R</span>
+                      <h3 class="font-bold text-lg group-hover:underline">Restaurant Operations AI</h3>
+                    </div>
+                    <p class="text-sm text-ink/70 leading-relaxed">An AI system built to run day-to-day restaurant operations, integrated directly into how the business already works.</p>
+                  </a>
+                </div>
+              </div>
+
+              <div class="project-card relative flex flex-col sm:flex-row items-stretch gap-5 bg-paper border border-ink rounded-md p-5 pb-8 sm:pb-5 shadow-[4px_4px_0px_0px_#111111]">
+                <span class="pnum font-mono text-xs text-ink/40 absolute left-5 bottom-3" aria-hidden="true">02</span>
+                <div class="stage border border-dashed border-ink/30 bg-ink/[0.02] rounded flex items-center justify-center shrink-0 w-full sm:w-48 h-40">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Screenshot</span>
+                </div>
+                <div class="pinfo flex-1 flex flex-col justify-center">
+                  <a class="pinfo-main group" href="#" target="_blank" rel="noopener">
+                    <div class="ptitle flex items-center gap-2 mb-2">
+                      <span class="pbrand inline-flex items-center justify-center w-5 h-5 rounded border border-ink/30 bg-ink/5 shrink-0 font-mono text-[10px] font-bold text-ink/60">S</span>
+                      <h3 class="font-bold text-lg group-hover:underline">School Payments &times; SAP</h3>
+                    </div>
+                    <p class="text-sm text-ink/70 leading-relaxed">A payments integration wired directly into a school's existing SAP system, handling real transactions inside infrastructure the business already depends on.</p>
+                  </a>
+                </div>
+              </div>
+
+              <div class="project-card relative flex flex-col sm:flex-row items-stretch gap-5 bg-paper border border-ink rounded-md p-5 pb-8 sm:pb-5 shadow-[4px_4px_0px_0px_#111111]">
+                <span class="pnum font-mono text-xs text-ink/40 absolute left-5 bottom-3" aria-hidden="true">03</span>
+                <div class="stage border border-dashed border-ink/30 bg-ink/[0.02] rounded flex items-center justify-center shrink-0 w-full sm:w-48 h-40">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Preview</span>
+                </div>
+                <div class="pinfo flex-1 flex flex-col justify-center">
+                  <a class="pinfo-main group" href="#" target="_blank" rel="noopener">
+                    <div class="ptitle flex items-center gap-2 mb-2">
+                      <span class="pbrand inline-flex items-center justify-center w-5 h-5 rounded border border-ink/30 bg-ink/5 shrink-0 font-mono text-[10px] font-bold text-ink/60">T</span>
+                      <h3 class="font-bold text-lg group-hover:underline">TCG Marketplace</h3>
+                    </div>
+                    <p class="text-sm text-ink/70 leading-relaxed">A trading-card-game marketplace, launching this month.</p>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-skills" role="tabpanel" hidden>
+            <div class="kicker">Toolbox</div>
+            <h2>Skills</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+              <div class="skill-card relative min-h-[180px] bg-paper border border-ink/10 rounded-xl p-6 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="font-bold text-xl">AI Integration</h3>
+                  <span class="shrink-0 w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center">
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </span>
+                </div>
+                <p class="text-sm text-ink/50">Wiring AI into systems a business already runs on, not building demos.</p>
+                <span class="absolute left-6 bottom-5 font-mono text-xs text-ink/25" aria-hidden="true">01</span>
+              </div>
+
+              <div class="skill-card relative min-h-[180px] bg-paper border border-ink/10 rounded-xl p-6 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="font-bold text-xl">Enterprise Systems (SAP)</h3>
+                  <span class="shrink-0 w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center">
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </span>
+                </div>
+                <p class="text-sm text-ink/50">Payments, inventory, and operations built on top of SAP.</p>
+                <span class="absolute left-6 bottom-5 font-mono text-xs text-ink/25" aria-hidden="true">02</span>
+              </div>
+
+              <div class="skill-card relative min-h-[180px] bg-paper border border-ink/10 rounded-xl p-6 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="font-bold text-xl">Data &amp; Demand Planning</h3>
+                  <span class="shrink-0 w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center">
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </span>
+                </div>
+                <p class="text-sm text-ink/50">Inventory forecasting and analysis using Excel, SAP, and Tableau.</p>
+                <span class="absolute left-6 bottom-5 font-mono text-xs text-ink/25" aria-hidden="true">03</span>
+              </div>
+
+              <div class="skill-card relative min-h-[180px] bg-paper border border-ink/10 rounded-xl p-6 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="font-bold text-xl">Product Thinking</h3>
+                  <span class="shrink-0 w-8 h-8 rounded-full border border-ink/20 flex items-center justify-center">
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </span>
+                </div>
+                <p class="text-sm text-ink/50">Shipping real tools &mdash; from restaurant ops to a TCG marketplace &mdash; end to end.</p>
+                <span class="absolute left-6 bottom-5 font-mono text-xs text-ink/25" aria-hidden="true">04</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-articles" role="tabpanel" hidden>
+            <div class="kicker">Writing</div>
+            <h2>Recent Articles</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+              <a href="#" class="article-card bg-paper border border-ink rounded-md p-5 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="border border-dashed border-ink/30 bg-ink/[0.02] rounded h-40 flex items-center justify-center mb-4">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Preview</span>
+                </div>
+                <span class="font-mono text-xs text-ink/40 mb-2">2026.09.15</span>
+                <h3 class="font-bold text-lg mb-2">Building an AI system that plugs into how a restaurant actually runs</h3>
+                <p class="text-sm text-ink/50 line-clamp-2">A look at the integration work behind an AI ops system, not just the demo.</p>
+              </a>
+
+              <a href="#" class="article-card bg-paper border border-ink rounded-md p-5 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="border border-dashed border-ink/30 bg-ink/[0.02] rounded h-40 flex items-center justify-center mb-4">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Preview</span>
+                </div>
+                <span class="font-mono text-xs text-ink/40 mb-2">2026.08.28</span>
+                <h3 class="font-bold text-lg mb-2">Wiring a payments flow into a school's SAP system</h3>
+                <p class="text-sm text-ink/50 line-clamp-2">Notes on getting a new integration to behave inside infrastructure that already existed.</p>
+              </a>
+
+              <a href="#" class="article-card bg-paper border border-ink rounded-md p-5 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="border border-dashed border-ink/30 bg-ink/[0.02] rounded h-40 flex items-center justify-center mb-4">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Preview</span>
+                </div>
+                <span class="font-mono text-xs text-ink/40 mb-2">2026.08.10</span>
+                <h3 class="font-bold text-lg mb-2">What inventory demand planning taught me about production systems</h3>
+                <p class="text-sm text-ink/50 line-clamp-2">Lessons from SAP, Excel, and Tableau that carried over into building AI tools.</p>
+              </a>
+
+              <a href="#" class="article-card bg-paper border border-ink rounded-md p-5 shadow-[4px_4px_0px_0px_#111111]">
+                <div class="border border-dashed border-ink/30 bg-ink/[0.02] rounded h-40 flex items-center justify-center mb-4">
+                  <span class="font-mono text-xs text-ink/40 tracking-widest uppercase">Preview</span>
+                </div>
+                <span class="font-mono text-xs text-ink/40 mb-2">2026.07.22</span>
+                <h3 class="font-bold text-lg mb-2">Launching a TCG marketplace: what actually breaks first</h3>
+                <p class="text-sm text-ink/50 line-clamp-2">Early notes from building and shipping a marketplace end to end.</p>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-about" role="tabpanel" hidden>
+            <div class="kicker">Who</div>
+            <h2>About</h2>
+            <div class="about">
+              <div class="avatar-frame"><img class="avatar" src="assets/profile/avatar.png" alt="Alejandro Cimentada" /></div>
+              <p class="bio"><strong>Alejandro Cimentada</strong> — Born in 2001 in the Dominican Republic. Trained as an Industrial Engineer, now transitioning into AI integration and AI product management — building systems that plug into what a business already runs on, and hoping to create user-friendly products along the way.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="col section-divider" />
+    </section>
+
+    <section id="contact">
+      <div class="col">
+        <div class="kicker rev">Say hi</div>
+        <h2 class="rev d1">Contact</h2>
+        <div class="contact-list rev d2">
+          <a class="contact-row contact-row--github" href="https://github.com/alejandrocimentada" target="_blank" rel="noopener noreferrer">
+            <span class="num">01</span>
+            <div><div class="platform"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</div><div class="handle">github/alejandrocimentada</div></div>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a class="contact-row contact-row--instagram" href="https://instagram.com/alejandrocimentada" target="_blank" rel="noopener noreferrer">
+            <span class="num">02</span>
+            <div><div class="platform"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>Instagram</div><div class="handle">ig/alejandrocimentada</div></div>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a class="contact-row contact-row--email" href="mailto:alejandrocimentadasone@gmail.com">
+            <span class="num">03</span>
+            <div><div class="platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Email</div><div class="handle">alejandrocimentadasone@gmail.com</div></div>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a class="contact-row contact-row--linkedin" href="https://www.linkedin.com/in/alejandrocimentada" target="_blank" rel="noopener noreferrer">
+            <span class="num">04</span>
+            <div><div class="platform"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/></svg>LinkedIn</div><div class="handle">/alejandrocimentada</div></div>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="col">&copy; 2026 Alejandro Cimentada</div>
+  </footer>
+
+<script>
+  // remove boot loader once page is ready
+  window.addEventListener('load', function () {
+    var loader = document.getElementById('loader');
+    setTimeout(function () {
+      loader.classList.add('is-exiting');
+      document.documentElement.classList.remove('is-booting');
+      setTimeout(function(){ loader.remove(); }, 700);
+    }, 400);
+  });
+
+  // scroll progress line + number (0 at top, 100 at max scroll)
+  var fill = document.getElementById('progressFill');
+  var num = document.getElementById('progressNum');
+  function onScroll() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    scrolled = isFinite(scrolled) ? Math.min(100, Math.max(0, scrolled)) : 0;
+    fill.style.height = scrolled + '%';
+    num.textContent = Math.round(scrolled);
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // scroll-triggered reveal
+  var revealEls = document.querySelectorAll('.rev');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('on');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(function (el) { io.observe(el); });
+
+  // ---------- Gemini hero section: exact interaction port ----------
+  lucide.createIcons();
+
+  var geminiModes = ["Interactive", "Editorial", "Blueprint", "Vector"];
+  var geminiModeIndex = 0;
+
+  var geminiDial = document.getElementById('interactiveDial');
+  var geminiDialSvg = document.getElementById('dialSvg');
+  var geminiDialModeText = document.getElementById('dialModeText');
+
+  geminiDial.addEventListener('click', function () {
+    geminiModeIndex = (geminiModeIndex + 1) % geminiModes.length;
+    geminiDialModeText.textContent = geminiModes[geminiModeIndex];
+
+    var rotation = geminiModeIndex * 90;
+    geminiDialSvg.style.transform = 'rotate(' + rotation + 'deg)';
+  });
+
+  function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // ---------- Tab panel switching ----------
+  var TAB_FADE_MS = 250;
+  var tabLinks = document.querySelectorAll('.tab-link');
+
+  function switchTab(tabName) {
+    var nextPanel = document.getElementById('panel-' + tabName);
+    if (!nextPanel) return;
+
+    var currentPanel = document.querySelector('.tab-panel.active');
+    if (currentPanel === nextPanel) return;
+
+    tabLinks.forEach(function (btn) {
+      var isActive = btn.getAttribute('data-tab') === tabName;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      if (currentPanel) {
+        currentPanel.classList.remove('active');
+        currentPanel.hidden = true;
+      }
+      nextPanel.hidden = false;
+      nextPanel.classList.add('active');
+      return;
+    }
+
+    if (currentPanel) {
+      currentPanel.classList.remove('active');
+      currentPanel.classList.add('fading-out');
+      window.setTimeout(function () {
+        currentPanel.hidden = true;
+        currentPanel.classList.remove('fading-out');
+      }, TAB_FADE_MS);
+    }
+
+    nextPanel.hidden = false;
+    void nextPanel.offsetWidth; // force reflow so the fade-in transition plays
+    nextPanel.classList.add('active');
+  }
+
+  tabLinks.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      switchTab(btn.getAttribute('data-tab'));
+    });
+  });
+
+  function toggleMobileMenu() {
+    var drawer = document.getElementById('mobileDrawer');
+    drawer.classList.toggle('translate-x-full');
+  }
+
+  document.getElementById('menuBtn').addEventListener('click', toggleMobileMenu);
+  document.getElementById('closeMenuBtn').addEventListener('click', toggleMobileMenu);
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    var isDark = document.documentElement.classList.toggle('dark');
+    try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+  });
+
+  // ---------- Continuous scroll roll effect (hero only) ----------
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var targets = [
+      { el: document.getElementById('heroStage'), range: document.getElementById('top'), maxAngle: 45, maxY: 120 }
+    ].filter(function (t) { return t.el && t.range; });
+
+    if (!targets.length) return;
+
+    var ticking = false;
+
+    function update() {
+      targets.forEach(function (t) {
+        var rect = t.range.getBoundingClientRect();
+        var range = t.range.offsetHeight || 1;
+        var localY = Math.max(0, -rect.top);
+        var progress = Math.min(1, localY / range);
+
+        t.el.style.setProperty('--roll-angle', (progress * t.maxAngle) + 'deg');
+        t.el.style.setProperty('--roll-y', (progress * t.maxY) + 'px');
+      });
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+  })();
+
+</script>
+
+</body>
+</html>

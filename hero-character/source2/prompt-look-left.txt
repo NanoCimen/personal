@@ -1,0 +1,9 @@
+The single most important instruction: the character's head must visibly and continuously ROTATE to the left throughout this entire shot. This is a head-turn animation, not a static hold. If the head is not clearly turning frame by frame, the shot has failed.
+
+Motion: starting from facing forward (as in the reference image), the head and neck rotate steadily to the left. By the midpoint of the shot the head must already be turned at roughly a 45 degree yaw angle. By the final frame the head must be turned to nearly a left profile view, roughly 70-80 degrees, clearly showing the side of the face and the side of the hair silhouette instead of the front-facing view. The chin and nose visibly point left. Do not stop early, do not hold the forward-facing pose, do not keep the face frontal.
+
+Use the supplied reference image as the exact identity, character design, and scene reference: same flat black-and-white line-art style, same line weight, same flat white fill, same gray shadow shapes, same body, laptop, mug, plant, and rug. Do not add, remove, or redesign any object. Do not change the art style to shaded, colored, or painterly.
+
+Locked camera, no pan/tilt/zoom. The torso, arms, hands, laptop, mug, plant, and rug stay fixed in place; only the head and neck rotate. The background stays one uniform flat chroma-key green (#00FF00) rectangle, exactly as in the reference image, with no gradient or shadow on it.
+
+No cuts, no morphing glitches, no identity drift, no duplicated or extra objects, no motion blur, no camera movement, no text, no watermark, no color, no shading beyond the existing flat gray shadow. Keep it strictly black-and-white line art. But above all: the head must actually turn left, clearly and visibly.

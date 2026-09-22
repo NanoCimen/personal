@@ -1,0 +1,24 @@
+subject_count: 1
+subjects:
+  - identity: generic stylized person (no likeness constraints), seated cross-legged on a small rug, laptop in lap
+style: flat vector illustration, oiloil.org-like — clean flat colors, minimal shading, bold simple shapes, thick even outlines
+motion_intent: >
+  Person sits cross-legged on a rug typing on a laptop (rest state).
+  As the cursor moves around the hero, the person playfully gets distracted
+  from the laptop: glances toward the cursor when it's to their left or
+  right, and stretches/smiles toward the cursor when it comes close. They
+  settle back into typing when the cursor moves away or stops.
+driver: pointer
+input_semantics: continuous
+time_control: segment-play
+navigation: none
+clip_continuity: independent
+continuity:
+  - character proportions, outfit, hair, and rug pattern must not drift across states
+  - laptop shape/color must stay identical across all keyframes and clips
+  - flat-vector line weight and color palette must match across every state
+aspect_ratio: custom
+destination: >
+  Hero section, seated beside the heading/name text (left of or below the
+  "Alejandro Cimentada" hero heading), portrait-oriented illustration,
+  desktop and tablet; hidden or replaced by a static frame on narrow mobile.

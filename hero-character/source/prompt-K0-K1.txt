@@ -1,0 +1,11 @@
+Use the supplied first and last frames as the exact identity and design references for the seated person. Preserve the same silhouette, anatomy, face, clothing, colors, line work, texture, and proportions in every frame. The subject remains the same size and at the same anchored position throughout the shot. Do not add, remove, duplicate, or redesign any body part, accessory, feature, logo, control, or prop.
+
+Preserve the original illustration style exactly. Keep line thickness, flat color regions, and edge sharpness consistent. Do not turn the subject into volumetric CGI, photorealistic, painterly, or glossy imagery.
+
+Locked camera and locked framing. No camera pan, tilt, zoom, orbit, shake, reframing, perspective change, lens change, depth of field, or lighting change. The torso, legs, rug, and laptop remain fixed. Only the head, neck, and facial expression may move.
+
+The entire background is one perfectly uniform flat chroma-key green (#00FF00) rectangle in every frame. No gradient, texture, noise, floor plane, horizon, shadow, reflection, glow, particles, color variation, or lighting falloff on the background. Keep the subject fully separated from all image borders with generous padding. No cast shadow. No green object or reflected spill on the subject. No text, subtitle, watermark, border, or UI.
+
+Create one uninterrupted transition from the exact provided first frame to the exact provided last frame. The person turns their head and glances up and to their left, curious, with a slight smile, as if something caught their attention off to the left side. Hands remain resting on the laptop keyboard throughout. Begin the motion immediately, preserve all identity, structure, framing, background, and lighting constraints throughout, and reach the final pose only at the end. No cut, dissolve, unrelated idle motion, early completion, long final hold, or return motion.
+
+No cuts, morphing, identity drift, scale breathing, position drift, duplicated limbs, missing limbs, extra objects, motion blur, ghosting, frame blending, lighting flicker, shadows on the background, camera movement, text, watermark, border, style change, unnecessary sci-fi circuitry, or plastic AI clutter.

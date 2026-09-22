@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alejandro Cimentada — Editorial Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#F2F2ED',
+            ink: '#111111',
+            dim: '#888884',
+            grid: '#E2E2DC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    }
+    .dial-spinner {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink font-sans antialiased min-h-screen bg-grid-pattern overflow-x-hidden selection:bg-ink selection:text-paper">
+
+  <!-- Header Navigation -->
+  <header class="w-full max-w-7xl mx-auto px-8 py-6 flex justify-between items-center text-sm font-medium">
+    <div class="flex items-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-ink"></span>
+      <span class="tracking-tight">Alejandro Cimentada</span>
+    </div>
+    <nav class="flex items-center gap-8 text-dim">
+      <a href="#projects" class="hover:text-ink transition-colors">Projects</a>
+      <a href="#skills" class="hover:text-ink transition-colors">Skills</a>
+      <a href="#articles" class="hover:text-ink transition-colors">Articles</a>
+      <a href="#about" class="hover:text-ink transition-colors">About</a>
+      <a href="#contact" class="hover:text-ink transition-colors">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main Hero Container -->
+  <main class="w-full max-w-7xl mx-auto px-8 pt-12 pb-24 relative min-h-[80vh] flex flex-col justify-center">
+
+    <!-- SVG Overlay for Precision Connecting Arcs -->
+    <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#111111" />
+        </marker>
+      </defs>
+
+      <!-- Top Left Arc (From 10,0 to Interactive Dial) -->
+      <path d="M 230,225 Q 165,225 152,260"
+            fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow)" />
+
+      <!-- Bottom Left Arc (From Interactive Dial to AI Tag) -->
+      <path d="M 152,350 Q 170,395 242,395"
+            fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow)" />
+
+      <!-- Right Curved Vector Arc (From Title Box to Character) -->
+      <path d="M 525,230 Q 560,170 600,210 T 635,275"
+            fill="none" stroke="#111111" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow)" />
+    </svg>
+
+    <!-- Hero Content Grid -->
+    <div class="grid grid-cols-12 gap-6 items-center relative z-20">
+
+      <!-- Left Column: Rotary Dial, Headline Box, and Badge -->
+      <div class="col-span-7 flex items-center gap-8 relative">
+
+        <!-- Interactive Rotary Dial -->
+        <div id="rotaryDial" class="relative w-28 h-28 flex-shrink-0 cursor-pointer group" onclick="rotateDial()">
+          <!-- Outer Circle -->
+          <div class="absolute inset-0 rounded-full border border-ink/30 bg-paper/50 backdrop-blur-sm shadow-sm flex items-center justify-center">
+            <!-- Active Indicator Dot -->
+            <div id="dialDot" class="absolute w-2 h-2 bg-ink rounded-full top-2 right-4 dial-spinner"></div>
+          </div>
+          <!-- Inner Dial -->
+          <div class="absolute inset-2 rounded-full border border-ink/80 flex items-center justify-center bg-paper">
+            <span class="text-xs font-medium tracking-tight select-none">Interactive</span>
+          </div>
+        </div>
+
+        <!-- Headline Box Container -->
+        <div class="flex flex-col gap-4 relative">
+
+          <!-- Bounding Box Title Container -->
+          <div class="relative border border-ink/80 p-4 bg-paper/40">
+
+            <!-- Top Left Node Anchor & Coordinate Label -->
+            <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-paper border border-ink"></div>
+            <span class="absolute -top-5 left-0 font-mono text-[10px] text-ink font-semibold">10, 0</span>
+
+            <!-- Top Right Node Anchor -->
+            <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-paper border border-ink"></div>
+
+            <!-- Headline Text -->
+            <h1 class="text-6xl sm:text-7xl font-bold tracking-tight text-ink leading-[0.9] select-none">
+              Alejandro<br/>Cimentada
+            </h1>
+          </div>
+
+          <!-- Domain Spec Tag -->
+          <div class="self-start px-3 py-1.5 border border-ink/20 rounded-md bg-paper text-xs font-mono text-ink/80">
+            AI Integration / Enterprise Systems / Applied AI
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Comic Ink Character & Floating Editorial Cards -->
+      <div class="col-span-5 flex justify-end items-center relative">
+
+        <!-- Floating Editorial Cards Container -->
+        <div class="flex flex-col gap-4 items-end z-20">
+
+          <!-- Code Card -->
+          <div class="w-56 bg-paper border border-ink p-3 shadow-[4px_4px_0px_0px_#111111] transition-transform hover:-translate-y-0.5">
+            <div class="flex items-center justify-between border-b border-ink/10 pb-2 mb-2">
+              <div class="flex gap-1.5">
+                <span class="w-2 h-2 rounded-full border border-ink bg-ink"></span>
+                <span class="w-2 h-2 rounded-full border border-ink"></span>
+                <span class="w-2 h-2 rounded-full border border-ink"></span>
+              </div>
+              <span class="font-mono text-[10px] text-dim">code.ts</span>
+            </div>
+            <div class="font-mono text-[11px] leading-relaxed text-ink/80 space-y-1">
+              <p><span class="text-ink font-bold">const</span> ai = <span class="text-ink font-bold">new</span> System();</p>
+              <p>ai.integrate({ mode: <span class="underline">'full'</span> });</p>
+            </div>
+          </div>
+
+          <!-- Wireframe Spec Card -->
+          <div class="w-56 bg-paper border border-ink p-3 shadow-[4px_4px_0px_0px_#111111] transition-transform hover:-translate-y-0.5">
+            <div class="flex justify-between items-center mb-2 font-mono text-[10px] text-dim border-b border-ink/10 pb-1">
+              <span>LAYOUT_SPEC</span>
+              <span>v2.4</span>
+            </div>
+            <div class="w-full h-16 border border-dashed border-ink/40 flex items-center justify-center relative bg-ink/[0.02]">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-full h-[1px] bg-ink/20 rotate-12"></div>
+                <div class="w-full h-[1px] bg-ink/20 -rotate-12"></div>
+              </div>
+              <span class="font-mono text-[9px] bg-paper px-1 border border-ink/30 z-10">WIRE_FRAME</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Scroll Indicator Footer -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+      <span class="font-mono text-[10px] tracking-widest text-dim uppercase">↓ Scroll to Explore</span>
+    </div>
+
+  </main>
+
+  <script>
+    let currentAngle = 45;
+    function rotateDial() {
+      currentAngle += 90;
+      const dot = document.getElementById('dialDot');
+      if (dot) {
+        dot.style.transform = `rotate(${currentAngle}deg) translate(28px) rotate(-${currentAngle}deg)`;
+      }
+    }
+    // Set initial position
+    rotateDial();
+  </script>
+</body>
+</html>

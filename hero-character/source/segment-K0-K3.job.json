@@ -1,0 +1,49 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "Use the supplied first and last frames as the exact identity and design references for the seated person. Preserve the same silhouette, anatomy, face, clothing, colors, line work, texture, and proportions in every frame. The subject remains the same size and at the same anchored position (seated cross-legged on the rug) throughout the shot. Do not add, remove, duplicate, or redesign any body part, accessory, feature, logo, control, or prop.\n\nPreserve the original illustration style exactly. Keep line thickness, flat color regions, and edge sharpness consistent. Do not turn the subject into volumetric CGI, photorealistic, painterly, or glossy imagery.\n\nLocked camera and locked framing. No camera pan, tilt, zoom, orbit, shake, reframing, perspective change, lens change, depth of field, or lighting change. The seated position, legs, and rug remain fixed. The arms, torso lean, head, and laptop position may move as described.\n\nThe entire background is one perfectly uniform flat chroma-key green (#00FF00) rectangle in every frame. No gradient, texture, noise, floor plane, horizon, shadow, reflection, glow, particles, color variation, or lighting falloff on the background. Keep the subject fully separated from all image borders with generous padding. No cast shadow. No green object or reflected spill on the subject. No text, subtitle, watermark, border, or UI.\n\nCreate one uninterrupted transition from the exact provided first frame to the exact provided last frame. The person leans back away from the laptop, which settles closed on their lap, and stretches both arms up and out to the sides with a big relaxed happy smile, taking a playful break from typing. Begin the motion immediately, preserve all identity, structure, framing, background, and lighting constraints throughout, and reach the final pose only at the end. No cut, dissolve, unrelated idle motion, early completion, long final hold, or return motion.\n\nNo cuts, morphing, identity drift, scale breathing, position drift, duplicated limbs, missing limbs, extra objects, motion blur, ghosting, frame blending, lighting flicker, shadows on the background, camera movement, text, watermark, border, style change, unnecessary sci-fi circuitry, or plastic AI clutter."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "3:4",
+    "seed": 42
+  },
+  "submit": {
+    "id": "1c294bf6d19f4e2c89135011d3526a19",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "1c294bf6d19f4e2c89135011d3526a19",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 3
+  }
+}
