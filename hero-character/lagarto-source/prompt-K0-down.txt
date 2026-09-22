@@ -1,9 +1,0 @@
-Use the supplied first and last frames as the exact identity and design references for the gecko head. Preserve the exact same flat vector cartoon style: light green skin with darker green oval spots, cream-white throat patch, thick black outlines, same eye design, same head crest bump, same proportions. Do not add, remove, or redesign any part.
-
-Locked camera and locked framing, no pan, tilt, zoom, or perspective change of the camera itself. Only the head and neck rotate; nothing else changes.
-
-The entire background is one perfectly uniform flat chroma-key green (#00FF00) rectangle in every frame, exactly as in the reference frames. No gradient, texture, noise, or shadow on the background.
-
-Create one continuous, uninterrupted transition from the exact first frame to the exact last frame: the head tilts smoothly downward on the neck, chin lowering, settling into the final downward-looking pose only at the end. Begin the motion immediately.
-
-No cuts, morphing glitches, identity drift, scale breathing, position drift, duplicated features, motion blur, camera movement, text, watermark, color change, or shading change. Keep it strictly flat vector cartoon style throughout.

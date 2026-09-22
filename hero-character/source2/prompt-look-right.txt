@@ -1,9 +1,0 @@
-Use the supplied reference image as the exact identity, character design, and scene reference. Preserve the exact same flat black-and-white line-art illustration style: same thin/thick line weight, same flat white fill with no shading beyond the existing gray shadow shapes, same proportions of the head, hair, body, laptop, mug, plant, and rug. Do not add, remove, duplicate, or redesign any object, line, or detail.
-
-Locked camera and locked framing, no pan, tilt, zoom, orbit, or perspective change. The body, torso, arms, hands, laptop, mug, plant, and rug all remain completely fixed in place exactly as in the reference image.
-
-The entire background is one perfectly uniform flat chroma-key green (#00FF00) rectangle in every frame, exactly as in the reference image. No gradient, texture, noise, shadow, or lighting change on the background.
-
-Create one continuous, uninterrupted turn: only the character's round head and neck rotate to turn and look toward the right side of the frame, as if noticing something there. The head turns smoothly and settles looking right by the final frame. The facial features (eyes, eyebrows, smile) stay drawn in the same simple flat style throughout, consistent with the reference. Begin the motion immediately and hold the final right-looking pose only at the very end.
-
-No cuts, morphing, identity drift, scale breathing, position drift, duplicated limbs, extra objects, motion blur, ghosting, frame blending, lighting flicker, shadows on the background, camera movement, text, watermark, border, style change, color, shading, or plastic AI clutter. Keep the entire drawing strictly black-and-white line art.
