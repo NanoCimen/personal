@@ -67,7 +67,7 @@
         <i data-lucide="x" class="drawer-close-icon"></i>
       </button>
       <button onclick="switchTab('projects'); scrollToSection('explore'); toggleMobileMenu()" class="drawer-link">Proyectos</button>
-      <button onclick="switchTab('skills'); scrollToSection('explore'); toggleMobileMenu()" class="drawer-link">Habilidades</button>
+      <button onclick="switchTab('skills'); scrollToSection('explore'); toggleMobileMenu()" class="drawer-link">Agent Skills</button>
       <button onclick="switchTab('articles'); scrollToSection('explore'); toggleMobileMenu()" class="drawer-link">Artículos</button>
       <button onclick="switchTab('about'); scrollToSection('explore'); toggleMobileMenu()" class="drawer-link">Sobre mí</button>
       <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="drawer-link">Contacto</button>
@@ -314,7 +314,7 @@
         <!-- Tab nav -->
         <div class="section-tabs" role="tablist">
           <button type="button" class="section-tab active" data-tab="projects" role="tab" aria-selected="true" aria-controls="panel-projects">Proyectos</button>
-          <button type="button" class="section-tab" data-tab="skills" role="tab" aria-selected="false" aria-controls="panel-skills">Habilidades</button>
+          <button type="button" class="section-tab" data-tab="skills" role="tab" aria-selected="false" aria-controls="panel-skills">Agent Skills</button>
           <button type="button" class="section-tab" data-tab="articles" role="tab" aria-selected="false" aria-controls="panel-articles">Artículos</button>
           <button type="button" class="section-tab" data-tab="about" role="tab" aria-selected="false" aria-controls="panel-about">Sobre mí</button>
         </div>
@@ -328,49 +328,176 @@
 
               <div class="project-card card-shadow">
                 <span class="project-card-num mono-caption" aria-hidden="true">01</span>
-                <div class="project-card-image media-placeholder">
-                  <span class="eyebrow-label">Captura</span>
+                <div class="project-card-image project-card-preview" aria-hidden="true">
+                  <video class="project-card-video" src="assets/projects/tcg-mercado.mp4" poster="assets/projects/tcg-mercado-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
                 </div>
                 <div class="project-card-info">
-                  <a class="project-card-link" href="#" target="_blank" rel="noopener">
+                  <a class="project-card-link" href="https://tcgrd.yap.net.do/" target="_blank" rel="noopener noreferrer">
                     <div class="project-card-title-row">
-                      <span class="project-card-brand">R</span>
-                      <h3 class="project-card-title">IA de Operaciones para Restaurantes</h3>
+                      <img class="project-card-logo" src="assets/projects/tcg-logo.png" alt="" width="20" height="20">
+                      <h3 class="project-card-title">Tcg.rd</h3>
                     </div>
-                    <p class="project-card-desc">Un sistema de IA construido para gestionar las operaciones diarias de un restaurante, integrado directamente en la forma en que el negocio ya funciona.</p>
                   </a>
+                  <p class="project-card-tagline">Un marketplace para comprar y vender juegos de cartas coleccionables.</p>
+                  <p class="project-card-desc">Próximamente. Se lanza el 1 de noviembre de 2026.</p>
+                  <div class="project-card-actions">
+                    <a class="project-card-enter" href="https://tcgrd.yap.net.do/" target="_blank" rel="noopener noreferrer">Visitar Tcg.rd →</a>
+                    <a class="project-card-secondary" href="https://www.instagram.com/tcg.rd/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                  </div>
                 </div>
               </div>
 
               <div class="project-card card-shadow">
                 <span class="project-card-num mono-caption" aria-hidden="true">02</span>
-                <div class="project-card-image media-placeholder">
-                  <span class="eyebrow-label">Captura</span>
+                <div class="project-card-image project-card-preview" aria-hidden="true">
+                  <div class="pv-frame pv-scrape" style="--pvs-n:22;--pvs-chars:22ch;--pvs-csv-x:314px">
+                    <div class="pvs-tabstrip">
+                      <div class="pvs-dots"><i></i><i></i><i></i></div>
+                      <div class="pvs-tabs"><span class="pvs-tab pvs-tab-page"><i class="pvs-fav"></i>supermarket.example/deals</span><span class="pvs-tab pvs-tab-res"><img src="assets/projects/scrape-pro-logo.svg" alt="">Scrape Pro · resultados</span></div>
+                    </div>
+                    <div class="pvs-toolbar">
+                      <div class="pvs-url"><span class="pvs-url-page">supermarket.example<b>/deals</b></span><span class="pvs-url-res">chrome-extension://scrape-pro<b>/results.html</b></span></div>
+                      <span class="pvs-ext"><img src="assets/projects/scrape-pro-logo.svg" alt=""><span class="pvs-badge">ON</span></span>
+                    </div>
+                    <div class="pvs-viewport">
+                      <div class="pvs-page">
+                        <div class="pvs-shop-head"><b>Ofertas de la semana</b><span>8 productos · precios en RD$</span></div>
+                        <div class="pvs-grid">
+                          <div class="pvs-product"><div class="pvs-img pvs-g1"></div><span class="pvs-name">Café molido</span><span class="pvs-size">1 lb</span><span class="pvs-price">RD$ 245.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g2"></div><span class="pvs-name">Arroz</span><span class="pvs-size">5 lb</span><span class="pvs-price">RD$ 189.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g3"></div><span class="pvs-name">Aceite de oliva</span><span class="pvs-size">500 ml</span><span class="pvs-price">RD$ 410.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g4"></div><span class="pvs-name">Pasta</span><span class="pvs-size">1 lb</span><span class="pvs-price">RD$ 62.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g5"></div><span class="pvs-name">Leche de avena</span><span class="pvs-size">1 L</span><span class="pvs-price">RD$ 155.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g6"></div><span class="pvs-name">Habichuelas negras</span><span class="pvs-size">15 oz</span><span class="pvs-price">RD$ 58.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g7"></div><span class="pvs-name">Queso cheddar</span><span class="pvs-size">8 oz</span><span class="pvs-price">RD$ 320.00</span></div>
+                          <div class="pvs-product"><div class="pvs-img pvs-g8"></div><span class="pvs-name">Jugo de naranja</span><span class="pvs-size">1 L</span><span class="pvs-price">RD$ 97.00</span></div>
+                        </div>
+                        <i class="pvs-sweep" style="left:8px;top:29px;animation-delay:0.00s"></i>
+                        <i class="pvs-sweep" style="left:105.5px;top:29px;animation-delay:0.09s"></i>
+                        <i class="pvs-sweep" style="left:203px;top:29px;animation-delay:0.18s"></i>
+                        <i class="pvs-sweep" style="left:300.5px;top:29px;animation-delay:0.27s"></i>
+                        <i class="pvs-sweep" style="left:8px;top:109px;animation-delay:0.36s"></i>
+                        <i class="pvs-sweep" style="left:105.5px;top:109px;animation-delay:0.45s"></i>
+                        <i class="pvs-sweep" style="left:203px;top:109px;animation-delay:0.54s"></i>
+                        <i class="pvs-sweep" style="left:300.5px;top:109px;animation-delay:0.63s"></i>
+                        <div class="pvs-pick"><span class="pvs-tag">a.product · 92×74</span></div>
+                        <div class="pvs-card">
+                          <div class="pvs-card-head"><span class="pvs-chip">&lt;a&gt;</span><b>Elemento seleccionado</b><span class="pvs-x">✕</span></div>
+                          <div class="pvs-sec">
+                            <div class="pvs-label">Extraer datos</div>
+                            <div class="pvs-input"><span class="pvs-ph">ej. nombre, precio, enlace</span><span class="pvs-typed">nombre, precio, enlace</span></div>
+                            <div class="pvs-go"><span class="pvs-go-idle">▦ Extraer similares como tabla</span><span class="pvs-go-busy">Buscando el patrón…</span></div>
+                            <div class="pvs-msg">✓ 8 filas extraídas</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pvs-results">
+                        <div class="pvs-r-top"><span class="pvs-r-kicker">Scrape Pro · datos extraídos</span><span class="pvs-r-back">← Volver a la página</span></div>
+                        <div class="pvs-r-title">Productos en oferta</div>
+                        <div class="pvs-r-tools"><span class="pvs-r-filter">Filtrar filas…</span><span class="pvs-r-btn pvs-csv"><span class="pvs-csv-idle">⬇ Excel / CSV</span><span class="pvs-csv-done">✓ Descargado</span></span><span class="pvs-r-btn">⬇ JSON</span></div>
+                        <div class="pvs-r-count">Mostrando 8 de 8 filas · 3 columnas</div>
+                        <div class="pvs-r-table"><table>
+                          <thead><tr><th>#</th><th>nombre</th><th>precio</th><th>enlace</th></tr></thead>
+                          <tbody>
+                            <tr><td>1</td><td>Café molido</td><td>RD$ 245.00</td><td>supermarket.example/p/1042</td></tr>
+                            <tr><td>2</td><td>Arroz</td><td>RD$ 189.00</td><td>supermarket.example/p/1043</td></tr>
+                            <tr><td>3</td><td>Aceite de oliva</td><td>RD$ 410.00</td><td>supermarket.example/p/1044</td></tr>
+                            <tr><td>4</td><td>Pasta</td><td>RD$ 62.00</td><td>supermarket.example/p/1045</td></tr>
+                            <tr><td>5</td><td>Leche de avena</td><td>RD$ 155.00</td><td>supermarket.example/p/1046</td></tr>
+                            <tr><td>6</td><td>Habichuelas negras</td><td>RD$ 58.00</td><td>supermarket.example/p/1047</td></tr>
+                            <tr><td>7</td><td>Queso cheddar</td><td>RD$ 320.00</td><td>supermarket.example/p/1048</td></tr>
+                            <tr><td>8</td><td>Jugo de naranja</td><td>RD$ 97.00</td><td>supermarket.example/p/1049</td></tr>
+                          </tbody>
+                        </table></div>
+                      </div>
+                    </div>
+                    <div class="pvs-toast"><i>✓</i><div><b>scrape-pro-demo.csv</b><span>Guardado en Descargas · 8 filas</span></div></div>
+                    <i class="pvs-ring pvs-ring-1"></i><i class="pvs-ring pvs-ring-2"></i><i class="pvs-ring pvs-ring-3"></i>
+                    <span class="pvs-cursor"><svg viewBox="0 0 11 15"><path d="M1 1v12l3-3 2.2 4.4 2-1L6 9h4.2z" fill="#fff" stroke="#0B0D12" stroke-width="1.1" stroke-linejoin="round"/></svg></span>
+                  </div>
                 </div>
                 <div class="project-card-info">
-                  <a class="project-card-link" href="#" target="_blank" rel="noopener">
+                  <a class="project-card-link" href="https://scrape-pro.js.org" target="_blank" rel="noopener noreferrer">
                     <div class="project-card-title-row">
-                      <span class="project-card-brand">S</span>
-                      <h3 class="project-card-title">Pagos Escolares &times; SAP</h3>
+                      <img class="project-card-logo" src="assets/projects/scrape-pro-logo.svg" alt="" width="20" height="20">
+                      <h3 class="project-card-title">Scrape Pro</h3>
                     </div>
-                    <p class="project-card-desc">Una integración de pagos conectada directamente al sistema SAP de un colegio, procesando transacciones reales dentro de una infraestructura de la que el negocio ya depende.</p>
                   </a>
+                  <p class="project-card-tagline">Apunta, haz clic y convierte los datos de cualquier web en una tabla con IA.</p>
+                  <p class="project-card-desc">Elige un elemento y la IA encuentra el patrón en toda la página. Exporta a Excel, CSV o JSON, u obtén un scraper de Python listo para ejecutar.</p>
+                  <ul class="project-card-tags">
+                    <li>Extensión de Chrome</li>
+                    <li>Integración de LLM</li>
+                    <li>Extracción de datos</li>
+                  </ul>
+                  <div class="project-card-actions">
+                    <a class="project-card-enter" href="https://scrape-pro.js.org" target="_blank" rel="noopener noreferrer">Probar Scrape Pro →</a>
+                    <a class="project-card-secondary" href="https://github.com/alejandrocimentada/Scrape-Pro" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  </div>
                 </div>
               </div>
 
               <div class="project-card card-shadow">
                 <span class="project-card-num mono-caption" aria-hidden="true">03</span>
-                <div class="project-card-image media-placeholder">
-                  <span class="eyebrow-label">Vista previa</span>
+                <div class="project-card-image project-card-preview" aria-hidden="true">
+                  <div class="pv-frame pv-capture">
+                    <div class="pvc-scene pvc-scene-1">
+                      <div class="pvc-p pvc-mock-card"></div>
+                      <div class="pvc-p pvc-mock-img"></div>
+                      <div class="pvc-p pvc-mock-line pvc-l1"></div>
+                      <div class="pvc-p pvc-mock-line pvc-l2"></div>
+                      <div class="pvc-p pvc-mock-btn"></div>
+                      <div class="pvc-p pvc-hl"><span>clic para capturar</span></div>
+                      <div class="pvc-p pvc-toast"><b>Elemento capturado</b><i class="pvc-chip">14 elementos</i><i class="pvc-chip">9 reglas</i><span class="pvc-bar"></span></div>
+                    </div>
+                    <div class="pvc-scene pvc-scene-2">
+                      <div class="pvc-p pvc-pane pvc-raw">
+                        <em>captura en bruto</em>
+                        <code>.n12 { /* 143×44 */</code>
+                        <code>  min-width: auto;</code>
+                        <code>  box-shadow: rgba(0,0,0,0) 0 0…</code>
+                        <code>  transition: color .15s, bg…</code>
+                        <code>  border: 1px solid rgb(212…</code>
+                        <code>}</code>
+                      </div>
+                      <div class="pvc-p pvc-pane pvc-clean">
+                        <em>✦ componente limpio</em>
+                        <code><s>.card__button</s> {</code>
+                        <code>  <s>padding</s>: 11px 20px;</code>
+                        <code>  <s>border-radius</s>: var(--radius);</code>
+                        <code>  <s>background</s>: var(--accent);</code>
+                        <code>}</code>
+                      </div>
+                      <div class="pvc-p pvc-sweep"></div>
+                      <div class="pvc-p pvc-working">Claude lo está limpiando…</div>
+                    </div>
+                    <div class="pvc-scene pvc-scene-3">
+                      <div class="pvc-p pvc-split">
+                        <div class="pvc-stage"><div class="pvc-card"><i></i><b></b><u></u></div></div>
+                        <div class="pvc-code"><i style="width:40%"></i><i style="width:72%"></i><i style="width:56%"></i><i style="width:84%"></i><i style="width:30%"></i><i style="width:64%"></i><i style="width:48%"></i><i style="width:76%"></i><i style="width:36%"></i></div>
+                      </div>
+                      <div class="pvc-p pvc-copy"><span>Copiar código</span><span class="pvc-c2">Copiado ✓</span></div>
+                    </div>
+                  </div>
                 </div>
                 <div class="project-card-info">
-                  <a class="project-card-link" href="#" target="_blank" rel="noopener">
+                  <a class="project-card-link" href="https://capture-pro.js.org/" target="_blank" rel="noopener noreferrer">
                     <div class="project-card-title-row">
-                      <span class="project-card-brand">T</span>
-                      <h3 class="project-card-title">Marketplace de TCG</h3>
+                      <img class="project-card-logo" src="assets/projects/capture-pro-logo.svg" alt="" width="20" height="20">
+                      <h3 class="project-card-title">Capture Pro</h3>
                     </div>
-                    <p class="project-card-desc">Un marketplace de cartas coleccionables (TCG), que se lanza este mes.</p>
                   </a>
+                  <p class="project-card-tagline">Copia cualquier diseño de la web como HTML y CSS limpio y reutilizable.</p>
+                  <p class="project-card-desc">Haz clic en cualquier elemento de cualquier web para capturar su HTML y CSS. La IA lo convierte en un componente limpio y reutilizable.</p>
+                  <ul class="project-card-tags">
+                    <li>Extensión de Chrome</li>
+                    <li>Integración de LLM</li>
+                    <li>Front-end</li>
+                  </ul>
+                  <div class="project-card-actions">
+                    <a class="project-card-enter" href="https://capture-pro.js.org/" target="_blank" rel="noopener noreferrer">Probar Capture Pro →</a>
+                    <a class="project-card-secondary" href="https://github.com/alejandrocimentada/Capture-Pro" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  </div>
                 </div>
               </div>
 
@@ -378,52 +505,57 @@
           </div>
 
           <div class="section-panel" id="panel-skills" role="tabpanel" hidden>
-            <div class="kicker">Herramientas</div>
-            <h2>Habilidades</h2>
+            <div class="kicker">Para tu terminal</div>
+            <h2>Agent Skills</h2>
+            <p class="skill-intro">Skills para agentes de IA como Claude Code: instálalas en tu terminal y tu agente aprende el flujo de trabajo.</p>
             <div class="skill-grid">
 
-              <div class="skill-card card-shadow">
-                <div class="skill-card-header">
-                  <h3 class="skill-card-title">Integración de IA</h3>
-                  <span class="skill-card-icon">
-                    <i data-lucide="arrow-up-right" class="skill-card-arrow"></i>
-                  </span>
+              <!-- TODO: add GitHub link and remove "In development" badge at launch -->
+              <div class="skill-card skill-card--static card-shadow">
+                <div class="skill-card-art">
+                  <picture>
+                    <source srcset="assets/skills/dr-facturacion.webp" type="image/webp">
+                    <img src="assets/skills/dr-facturacion.png" alt="Ilustración: un niño y un gecko verde revisando facturas" width="1200" height="800" loading="lazy" decoding="async">
+                  </picture>
                 </div>
-                <p class="skill-card-desc">Conectar IA a sistemas que un negocio ya usa, no construir demos.</p>
+                <div class="skill-card-header">
+                  <h3 class="skill-card-title">DR Facturación</h3>
+                  <span class="skill-card-badge">En desarrollo</span>
+                </div>
+                <p class="skill-card-desc">Valida RNC, números de NCF y cálculos de ITBIS en facturas dominicanas, según las reglas oficiales de la DGII.</p>
                 <span class="skill-card-num mono-caption" aria-hidden="true">01</span>
               </div>
 
-              <div class="skill-card card-shadow">
-                <div class="skill-card-header">
-                  <h3 class="skill-card-title">Sistemas Empresariales (SAP)</h3>
-                  <span class="skill-card-icon">
-                    <i data-lucide="arrow-up-right" class="skill-card-arrow"></i>
-                  </span>
+              <!-- TODO: add GitHub link and remove "In development" badge at launch -->
+              <div class="skill-card skill-card--static card-shadow">
+                <div class="skill-card-art">
+                  <picture>
+                    <source srcset="assets/skills/sap-copilot.webp" type="image/webp">
+                    <img src="assets/skills/sap-copilot.png" alt="Ilustración: un niño y un gecko verde señalando una pantalla de software empresarial" width="1200" height="800" loading="lazy" decoding="async">
+                  </picture>
                 </div>
-                <p class="skill-card-desc">Pagos, inventario y operaciones construidos sobre SAP.</p>
+                <div class="skill-card-header">
+                  <h3 class="skill-card-title">SAP Copilot</h3>
+                  <span class="skill-card-badge">En desarrollo</span>
+                </div>
+                <p class="skill-card-desc">Pregunta en lenguaje natural y obtén la transacción, los pasos y las tablas de SAP, adaptados a la versión y los nombres de tu empresa.</p>
                 <span class="skill-card-num mono-caption" aria-hidden="true">02</span>
               </div>
 
-              <div class="skill-card card-shadow">
-                <div class="skill-card-header">
-                  <h3 class="skill-card-title">Datos y Planificación de Demanda</h3>
-                  <span class="skill-card-icon">
-                    <i data-lucide="arrow-up-right" class="skill-card-arrow"></i>
-                  </span>
+              <!-- TODO: add GitHub link and remove "In development" badge at launch -->
+              <div class="skill-card skill-card--static card-shadow">
+                <div class="skill-card-art">
+                  <picture>
+                    <source srcset="assets/skills/excel-to-pandas.webp" type="image/webp">
+                    <img src="assets/skills/excel-to-pandas.png" alt="Ilustración: un bebé panda y un gecko jugando con una hoja de cálculo que se convierte en código" width="1200" height="800" loading="lazy" decoding="async">
+                  </picture>
                 </div>
-                <p class="skill-card-desc">Pronóstico y análisis de inventario usando Excel, SAP y Tableau.</p>
+                <div class="skill-card-header">
+                  <h3 class="skill-card-title">Excel to Pandas</h3>
+                  <span class="skill-card-badge">En desarrollo</span>
+                </div>
+                <p class="skill-card-desc">Convierte un flujo de trabajo en Excel en un script de Python reutilizable, con prueba de que ambos dan resultados idénticos.</p>
                 <span class="skill-card-num mono-caption" aria-hidden="true">03</span>
-              </div>
-
-              <div class="skill-card card-shadow">
-                <div class="skill-card-header">
-                  <h3 class="skill-card-title">Pensamiento de Producto</h3>
-                  <span class="skill-card-icon">
-                    <i data-lucide="arrow-up-right" class="skill-card-arrow"></i>
-                  </span>
-                </div>
-                <p class="skill-card-desc">Lanzar herramientas reales &mdash; desde operaciones de restaurante hasta un marketplace de TCG &mdash; de principio a fin.</p>
-                <span class="skill-card-num mono-caption" aria-hidden="true">04</span>
               </div>
 
             </div>
@@ -478,7 +610,19 @@
             <h2>Sobre mí</h2>
             <div class="about">
               <div class="avatar-frame"><img class="avatar" src="assets/profile/avatar.png" alt="Alejandro Cimentada" /></div>
-              <p class="bio"><strong>Alejandro Cimentada</strong> — Nacido en 2001 en República Dominicana. Formado como ingeniero industrial, ahora en transición hacia la integración de IA y la gestión de producto de IA — construyendo sistemas que se conectan a lo que un negocio ya utiliza, con la esperanza de crear productos fáciles de usar en el camino.</p>
+              <div class="about-text">
+                <p class="bio"><strong>Alejandro Cimentada</strong> — Nacido en 2001 en República Dominicana. Formado como ingeniero industrial, ahora en transición hacia la integración de IA y la gestión de producto de IA — construyendo sistemas que se conectan a lo que un negocio ya utiliza, con la esperanza de crear productos fáciles de usar en el camino.</p>
+                <ul class="about-chips" aria-label="Habilidades">
+                  <li>Santo Domingo</li>
+                  <li>AI Integration</li>
+                  <li>SAP</li>
+                  <li>Demand Planning</li>
+                  <li>Python</li>
+                  <li>JavaScript</li>
+                  <li>Excel</li>
+                  <li>Tableau</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -510,7 +654,7 @@
           </a>
           <a class="contact-row contact-row--linkedin" href="https://www.linkedin.com/in/alejandrocimentada" target="_blank" rel="noopener noreferrer">
             <span class="num">04</span>
-            <div><div class="platform"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/></svg>LinkedIn</div><div class="handle">/alejandrocimentada</div></div>
+            <div><div class="platform"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/></svg>LinkedIn</div><div class="handle">in/alejandrocimentada</div></div>
             <span class="arrow">&rarr;</span>
           </a>
         </div>
@@ -557,6 +701,21 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(function (el) { io.observe(el); });
+
+  // project previews: scale each 400x250 animation frame to its box
+  if ('ResizeObserver' in window) {
+    var previewRO = new ResizeObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.style.setProperty('--pv-scale', entry.target.clientWidth / 400);
+      });
+    });
+    document.querySelectorAll('.project-card-preview').forEach(function (box) { previewRO.observe(box); });
+  }
+
+  // project videos: show the still poster frame for people who prefer reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.project-card-video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+  }
 
   // ---------- Gemini hero section: exact interaction port ----------
   lucide.createIcons();

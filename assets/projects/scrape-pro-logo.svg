@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Scrape Pro logo. Same geometry as logoCanvas() in background.js (large-size variant). -->
+  <defs>
+    <linearGradient id="sp-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6D4AFF" />
+      <stop offset="1" stop-color="#A78BFA" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="33.28" fill="url(#sp-grad)" />
+  <g fill="#fff">
+    <rect x="25.6" y="34.56" width="49.15" height="12.8" rx="6.4" />
+    <rect x="25.6" y="55.04" width="36.86" height="12.8" rx="6.4" />
+    <rect x="25.6" y="75.52" width="42.6" height="12.8" rx="6.4" />
+    <path d="M71.68 64V115.2L86.02 101.89L106.5 100.86Z" stroke="#3B1FB0" stroke-width="5.76" stroke-linejoin="round" paint-order="stroke" />
+  </g>
+</svg>
