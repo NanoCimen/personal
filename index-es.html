@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="hero-cluster.js" defer></script>
 </head>
 <body>
 
@@ -92,25 +93,14 @@
 
           <div class="hero-title-row">
 
-            <!-- Interactive Rotary Dial Component -->
-            <div class="dial" id="interactiveDial">
-              <div class="dial-face">
-                <!-- Outer Ring Halftone Accent -->
-                <div class="dial-halftone halftone"></div>
-
-                <!-- Rotating Indicator Ring -->
-                <svg class="dial-spinner" viewBox="0 0 100 100" id="dialSvg">
-                  <circle cx="50" cy="50" r="45" fill="none" stroke="#0F1115" stroke-width="1" stroke-dasharray="3, 3" />
-                  <circle cx="50" cy="8" r="4" fill="#0F1115" />
-                </svg>
-
-                <!-- Inner Dial Content -->
-                <div class="dial-label">
-                  <span class="dial-label-caption">Modo</span>
-                  <span class="dial-mode" id="dialModeText">Interactivo</span>
-                </div>
-              </div>
-            </div>
+            <!-- Mode dial: 3D shard cluster (hero-cluster.js); click cycles the mode -->
+            <button type="button" class="dial" id="interactiveDial" aria-label="Cambiar el modo del encabezado. Modo actual: Interactivo">
+              <canvas class="dial-cluster" id="dialCluster" aria-hidden="true"></canvas>
+              <span class="dial-label" aria-hidden="true">
+                <span class="dial-label-caption">Modo</span>
+                <span class="dial-mode" id="dialModeText">Interactivo</span>
+              </span>
+            </button>
 
             <!-- Bounding Box Editorial Typography -->
             <div class="hero-title-box">
@@ -724,15 +714,13 @@
   var geminiModeIndex = 0;
 
   var geminiDial = document.getElementById('interactiveDial');
-  var geminiDialSvg = document.getElementById('dialSvg');
   var geminiDialModeText = document.getElementById('dialModeText');
 
+  // the cluster itself reacts to the click in hero-cluster.js
   geminiDial.addEventListener('click', function () {
     geminiModeIndex = (geminiModeIndex + 1) % geminiModes.length;
     geminiDialModeText.textContent = geminiModes[geminiModeIndex];
-
-    var rotation = geminiModeIndex * 90;
-    geminiDialSvg.style.transform = 'rotate(' + rotation + 'deg)';
+    geminiDial.setAttribute('aria-label', 'Cambiar el modo del encabezado. Modo actual: ' + geminiModes[geminiModeIndex]);
   });
 
   function scrollToSection(id) {
